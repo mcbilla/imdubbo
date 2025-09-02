@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>dubbo-parent</artifactId>
+        <groupId>com.mcb</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>dubbo-all</artifactId>
+    <version>${project.parent.version}</version>
+    <description>package all modules</description>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.mcb</groupId>
+            <artifactId>dubbo-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mcb</groupId>
+            <artifactId>dubbo-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mcb</groupId>
+            <artifactId>dubbo-registry</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mcb</groupId>
+            <artifactId>dubbo-server</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
