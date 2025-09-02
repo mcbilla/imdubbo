@@ -10,10 +10,9 @@ import java.util.List;
 
 @Slf4j
 public class RpcServerDiscovery {
-    public void register(List<String> providerInterfaces, int port) throws UnknownHostException {
-        // todo 目前支持注册单机
+    public void register(List<String> providerInterfaces, String name, Integer bindPort) throws UnknownHostException {
         InetAddress address = InetAddress.getLocalHost();
-        String hostAddress = address.getHostAddress() + ":" + port;
+        String hostAddress = address.getHostAddress() + ":" + bindPort;
         providerInterfaces.forEach(i -> {
             StringBuilder builder = new StringBuilder();
             String path = builder.append(Constant.ZK_REGISTRY_PATH)

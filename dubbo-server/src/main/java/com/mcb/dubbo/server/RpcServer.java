@@ -30,10 +30,13 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
 
     private RpcServerDiscovery discovery = new RpcServerDiscovery();
 
-    private int port;
+    private final String name;
 
-    public RpcServer(int port) {
-        this.port = port;
+    private final Integer bindPort;
+
+    public RpcServer(String name, Integer bindPort) {
+        this.name = name;
+        this.bindPort = bindPort;
     }
 
     // 收集带有RpcService注解的类名及类对象
@@ -62,7 +65,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
         // 1、把服务注册到zk上
         List<String> providerInterfaces = handlerMap.entrySet().stream().map(Map.Entry::getKey).collect(Collectors.toList());
         try {
-            discovery.register(providerInterfaces, port);
+            discovery.register(providerInterfaces, name, bindPort);
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
@@ -77,7 +80,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                     .childHandler(new RpcServerChannelInitializer(handlerMap))
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = bootstrap.bind(port).sync();
+            ChannelFuture future = bootstrap.bind(bindPort).sync();
             future.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

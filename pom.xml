@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mcb</groupId>
     <artifactId>dubbo-parent</artifactId>
@@ -11,19 +19,19 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <file_encoding>UTF-8</file_encoding>
         <project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${file_encoding}</project.reporting.outputEncoding>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-
-        <springframework.version>4.3.10.RELEASE</springframework.version>
+        <springframework.version>5.3.22</springframework.version>
     </properties>
 
     <modules>
         <module>dubbo-all</module>
         <module>dubbo-server</module>
         <module>dubbo-common</module>
+        <module>dubbo-rpc</module>
         <module>dubbo-registry</module>
         <module>dubbo-client</module>
         <module>dubbo-demo</module>
@@ -37,18 +45,21 @@
                 <artifactId>spring-context</artifactId>
                 <version>${springframework.version}</version>
             </dependency>
+
             <!-- Apache Commons Collections -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>4.2</version>
             </dependency>
+
             <!-- CGLib -->
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>3.1</version>
             </dependency>
+
             <!-- lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -56,6 +67,7 @@
                 <version>1.18.2</version>
                 <scope>provided</scope>
             </dependency>
+
             <!-- netty -->
             <dependency>
                 <groupId>io.netty</groupId>
@@ -68,6 +80,7 @@
                 <groupId>com.dyuproject.protostuff</groupId>
                 <artifactId>protostuff-core</artifactId>
                 <version>1.0.8</version>
+
             </dependency>
             <dependency>
                 <groupId>com.dyuproject.protostuff</groupId>
@@ -87,6 +100,7 @@
                 <version>2.0.4</version>
                 <scope>test</scope>
             </dependency>
+
             <!-- PowerMock Mockito2 API -->
             <dependency>
                 <groupId>org.powermock</groupId>
@@ -122,13 +136,6 @@
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-recipes</artifactId>
                 <version>2.13.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${springframework.version}</version>
-                <scope>test</scope>
             </dependency>
 
             <dependency>
